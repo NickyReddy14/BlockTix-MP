@@ -28,12 +28,18 @@ const CampaignDetails = () => {
     if(contract) fetchDonators();
   }, [contract, address])
 
-  const handleDonate = async () => {
-    setIsLoading(true);
+  const handleDonate = async () => {if(remainingDays> 0)
+    {
+      setIsLoading(true);
 
-    await donate(state.pId, amount); 
-
-    navigate('/')
+      await donate(state.pId, amount);
+  
+      navigate('/')
+    }
+    else{
+      alert("The deadline is completed");
+    }
+    
     setIsLoading(false);
   }
 
